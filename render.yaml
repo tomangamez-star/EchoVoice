@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: echo-voice
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GITHUB_REPOSITORY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_BRANCH
+        value: main
+      - key: CALLBACK_TOKEN
+        generateValue: true
