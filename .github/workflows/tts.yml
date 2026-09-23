@@ -1,0 +1,33 @@
+name: Echo Voice TTS
+on:
+  workflow_dispatch:
+    inputs:
+      job_id: {required: true, type: string}
+      text: {required: true, type: string}
+      voice_url: {required: true, type: string}
+      callback_url: {required: true, type: string}
+      callback_token: {required: true, type: string}
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: 'pip'}
+      - name: Install system audio tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install Echo Voice worker
+        run: pip install -r requirements-worker.txt
+      - name: Generate cloned speech
+        env:
+          HF_HOME: ${{ github.workspace }}/.cache/huggingface
+        run: >-
+          python worker/generate.py
+          --job-id "${{ inputs.job_id }}"
+          --text "${{ inputs.text }}"
+          --voice-url "${{ inputs.voice_url }}"
+          --callback-url "${{ inputs.callback_url }}"
+          --callback-token "${{ inputs.callback_token }}"
