@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Echo Voice</title><link rel="stylesheet" href="/static/style.css"></head><body>
+<div class="shell"><header><div class="logo">E</div><div><h1>Echo Voice</h1><p>Let your words echo in your voice.</p></div><span id="dot" class="dot"></span></header>
+<main id="chat"><section class="hero"><div class="orb">〽</div><h2>Your voice. Any words.</h2><p>Upload a clean reference clip, type something, and Echo Voice will clone your voice with Chatterbox.</p></section></main>
+<section class="composer"><div id="voiceCard" class="voice-card"><span>🎙️</span><div><b>Reference voice</b><small id="voiceName">No recording selected</small></div><label>Choose audio<input id="voice" type="file" accept="audio/*" hidden></label></div>
+<textarea id="text" maxlength="1800" placeholder="Type what you want your voice to say..."></textarea><div class="bar"><span id="count">0 / 1800</span><button id="generate">Generate voice ↗</button></div></section>
+</div><script src="/static/app.js"></script></body></html>
