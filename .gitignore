@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+data/jobs/*.json
+data/audio/*
+data/voices/*
+!data/jobs/.gitkeep
+!data/audio/.gitkeep
+!data/voices/.gitkeep
+.cache/
